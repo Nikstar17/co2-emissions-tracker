@@ -1,4 +1,5 @@
 {
 	"prettier.printWidth": 250,
-	"prettier.tabWidth": 4
+	"prettier.tabWidth": 4,
+	"workbench.preferredDarkColorTheme": "Default Light Modern"
 }
