@@ -2,11 +2,10 @@ html {
 	scroll-behavior: smooth;
 }
 
-:target:before {
-	content: "";
-	display: block;
-	height: 150px;
-	margin: -150px 0 0;
+#willkommen,
+#ueberuns,
+#kontakt-info {
+	scroll-margin-top: 125px;
 }
 
 #logo {
@@ -144,6 +143,8 @@ td {
 }
 
 th {
+	vertical-align: top;
+	cursor: pointer;
 	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 	background-color: #a5df6e !important;
 	border-top: none;
@@ -213,4 +214,8 @@ a:visited {
 
 #hq-img {
 	width: 75%;
+}
+
+#offcanvasExample > div.offcanvas-body > div > ul > li > a {
+	color: Black;
 }
