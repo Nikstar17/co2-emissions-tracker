@@ -1,0 +1,302 @@
+[
+	{
+		"country": "China",
+		"company": "BTC 2moon",
+		"co2_emitted": 1751,
+		"year": 2022
+	},
+	{
+		"country": "China",
+		"company": "BTC 2moon",
+		"co2_emitted": 1096,
+		"year": 2023
+	},
+	{
+		"country": "China",
+		"company": "BTC 2moon",
+		"co2_emitted": 1872,
+		"year": 2021
+	},
+	{
+		"country": "China",
+		"company": "BTC 2moon",
+		"co2_emitted": 4306,
+		"year": 2020
+	},
+	{
+		"country": "USA",
+		"company": "BTC 2moon",
+		"co2_emitted": 3514,
+		"year": 2021
+	},
+	{
+		"country": "USA",
+		"company": "BTC 2moon",
+		"co2_emitted": 3926,
+		"year": 2020
+	},
+	{
+		"country": "China",
+		"company": "Digital Tech",
+		"co2_emitted": 2629,
+		"year": 2023
+	},
+	{
+		"country": "China",
+		"company": "Digital Tech",
+		"co2_emitted": 3827,
+		"year": 2021
+	},
+	{
+		"country": "China",
+		"company": "Digital Tech",
+		"co2_emitted": 3668,
+		"year": 2022
+	},
+	{
+		"country": "China",
+		"company": "Digital Tech",
+		"co2_emitted": 1332,
+		"year": 2020
+	},
+	{
+		"country": "USA",
+		"company": "Digital Tech",
+		"co2_emitted": 2855,
+		"year": 2022
+	},
+	{
+		"country": "USA",
+		"company": "LaserCorp",
+		"co2_emitted": 3328,
+		"year": 2021
+	},
+	{
+		"country": "USA",
+		"company": "LaserCorp",
+		"co2_emitted": 2967,
+		"year": 2020
+	},
+	{
+		"country": "USA",
+		"company": "LaserCorp",
+		"co2_emitted": 2301,
+		"year": 2023
+	},
+	{
+		"country": "USA",
+		"company": "LaserCorp",
+		"co2_emitted": 4089,
+		"year": 2022
+	},
+	{
+		"country": "China",
+		"company": "LaserCorp",
+		"co2_emitted": 2084,
+		"year": 2021
+	},
+	{
+		"country": "Deutschland",
+		"company": "LaserCorp",
+		"co2_emitted": 1947,
+		"year": 2023
+	},
+	{
+		"country": "China",
+		"company": "LaserCorp",
+		"co2_emitted": 2638,
+		"year": 2020
+	},
+	{
+		"country": "Deutschland",
+		"company": "Schröder GmbH",
+		"co2_emitted": 3656,
+		"year": 2021
+	},
+	{
+		"country": "Deutschland",
+		"company": "Schröder GmbH",
+		"co2_emitted": 1217,
+		"year": 2023
+	},
+	{
+		"country": "Deutschland",
+		"company": "Schröder GmbH",
+		"co2_emitted": 1697,
+		"year": 2022
+	},
+	{
+		"country": "Deutschland",
+		"company": "Schröder GmbH",
+		"co2_emitted": 2201,
+		"year": 2020
+	},
+	{
+		"country": "China",
+		"company": "Schröder GmbH",
+		"co2_emitted": 3739,
+		"year": 2023
+	},
+	{
+		"country": "USA",
+		"company": "Schröder GmbH",
+		"co2_emitted": 4296,
+		"year": 2023
+	},
+	{
+		"country": "USA",
+		"company": "Schröder GmbH",
+		"co2_emitted": 2894,
+		"year": 2022
+	},
+	{
+		"country": "Deutschland",
+		"company": "Solar AG",
+		"co2_emitted": 4192,
+		"year": 2020
+	},
+	{
+		"country": "Deutschland",
+		"company": "Solar AG",
+		"co2_emitted": 3117,
+		"year": 2022
+	},
+	{
+		"country": "Deutschland",
+		"company": "Solar AG",
+		"co2_emitted": 2375,
+		"year": 2023
+	},
+	{
+		"country": "Deutschland",
+		"company": "Solar AG",
+		"co2_emitted": 2529,
+		"year": 2021
+	},
+	{
+		"country": "China",
+		"company": "Solar AG",
+		"co2_emitted": 2026,
+		"year": 2022
+	},
+	{
+		"country": "China",
+		"company": "Solar AG",
+		"co2_emitted": 4837,
+		"year": 2023
+	},
+	{
+		"country": "USA",
+		"company": "Speed Invest",
+		"co2_emitted": 1627,
+		"year": 2023
+	},
+	{
+		"country": "USA",
+		"company": "Speed Invest",
+		"co2_emitted": 4602,
+		"year": 2022
+	},
+	{
+		"country": "USA",
+		"company": "Speed Invest",
+		"co2_emitted": 3775,
+		"year": 2021
+	},
+	{
+		"country": "USA",
+		"company": "Speed Invest",
+		"co2_emitted": 3409,
+		"year": 2020
+	},
+	{
+		"country": "Deutschland",
+		"company": "Speed Invest",
+		"co2_emitted": 3831,
+		"year": 2020
+	},
+	{
+		"country": "Deutschland",
+		"company": "Speed Invest",
+		"co2_emitted": 3506,
+		"year": 2021
+	},
+	{
+		"country": "Deutschland",
+		"company": "TechComp",
+		"co2_emitted": 3574,
+		"year": 2020
+	},
+	{
+		"country": "Deutschland",
+		"company": "TechComp",
+		"co2_emitted": 4488,
+		"year": 2021
+	},
+	{
+		"country": "Deutschland",
+		"company": "TechComp",
+		"co2_emitted": 1926,
+		"year": 2022
+	},
+	{
+		"country": "Deutschland",
+		"company": "TechComp",
+		"co2_emitted": 4861,
+		"year": 2023
+	},
+	{
+		"country": "USA",
+		"company": "TechComp",
+		"co2_emitted": 4293,
+		"year": 2021
+	},
+	{
+		"country": "USA",
+		"company": "TechComp",
+		"co2_emitted": 3164,
+		"year": 2022
+	},
+	{
+		"country": "USA",
+		"company": "TechComp",
+		"co2_emitted": 4886,
+		"year": 2020
+	},
+	{
+		"country": "USA",
+		"company": "Wind Ldt",
+		"co2_emitted": 2508,
+		"year": 2023
+	},
+	{
+		"country": "USA",
+		"company": "Wind Ldt",
+		"co2_emitted": 1566,
+		"year": 2022
+	},
+	{
+		"country": "USA",
+		"company": "Wind Ldt",
+		"co2_emitted": 2413,
+		"year": 2021
+	},
+	{
+		"country": "USA",
+		"company": "Wind Ldt",
+		"co2_emitted": 2400,
+		"year": 2020
+	},
+	{
+		"country": "Deutschland",
+		"company": "Wind Ldt",
+		"co2_emitted": 2569,
+		"year": 2020
+	},
+	{
+		"country": "Deutschland",
+		"company": "Wind Ldt",
+		"co2_emitted": 3734,
+		"year": 2023
+	}
+]
