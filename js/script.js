@@ -1,30 +1,29 @@
-window.onload = function () {
-	var userLang = navigator.language || navigator.userLanguage;
-	var rtlLanguages = ["ar", "he", "fa", "ur"];
-
-	if (rtlLanguages.includes(userLang)) {
-		document.querySelector("html").setAttribute("dir", "rtl");
-	}
-
-	if (
-		rtlLanguages.some(function (l) {
-			return userLang.startsWith(l);
-		})
-	) {
-		var offcanvasMenu = document.getElementById("offcanvasExample");
-		offcanvasMenu.classList.remove("offcanvas-start");
-		offcanvasMenu.classList.add("offcanvas-end");
-	}
-};
-
 document.addEventListener("DOMContentLoaded", function () {
+	var countryFilter = document.getElementById("country-filter");
+	var companyFilter = document.getElementById("company-filter");
+	var resetButton = document.getElementById("reset-button");
+	var sortableColumns = document.querySelectorAll(".sortable");
+
+	// Event-Listener für Filter- und Reset-Button
+	countryFilter.addEventListener("change", filterTable);
+	companyFilter.addEventListener("change", filterTable);
+	resetButton.addEventListener("click", resetFilters);
+
+	// Hinzufügen von Event-Listenern zu sortierbaren Spalten
+	sortableColumns.forEach(function (column) {
+		column.addEventListener("click", function () {
+			sortTable(column.getAttribute("data-column"));
+		});
+	});
+
+	// Daten aus JSON-Datei laden
 	fetch("data/data.json")
 		.then((response) => response.json())
 		.then((data) => {
+			globalData = data;
 			const tableBody = document.getElementById("data-table").getElementsByTagName("tbody")[0];
-			const countryFilter = document.getElementById("country-filter");
-			const companyFilter = document.getElementById("company-filter");
 
+			// Füllen der Tabelle mit Daten
 			data.forEach((item) => {
 				let row = tableBody.insertRow();
 				let cell1 = row.insertCell(0);
@@ -36,6 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
 				cell3.textContent = item.co2_emitted;
 				cell4.textContent = item.year;
 
+				// Hinzufügen von einzigartigen Filteroptionen
 				if (!countryFilter.querySelector(`option[value="${item.country}"]`)) {
 					let option = document.createElement("option");
 					option.value = item.country;
@@ -53,6 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		.catch((error) => console.error("Fehler beim Laden der Daten:", error));
 });
 
+// Sortiert die Tabelle nach einem bestimmten Spaltenindex
 function sortTable(columnIndex) {
 	var table,
 		rows,
@@ -63,18 +64,24 @@ function sortTable(columnIndex) {
 		shouldSwitch,
 		dir,
 		switchcount = 0;
+
+	// Tabellen-Referenz und Sortierrichtung
 	table = document.getElementById("data-table");
 	switching = true;
 	dir = "asc";
 	updateSortArrow(columnIndex, dir);
 
+	// Durchläuft die Zeilen und sortiert die Tabelle
 	while (switching) {
 		switching = false;
 		rows = table.rows;
+
 		for (i = 1; i < rows.length - 1; i++) {
 			shouldSwitch = false;
 			x = rows[i].getElementsByTagName("TD")[columnIndex];
 			y = rows[i + 1].getElementsByTagName("TD")[columnIndex];
+
+			// Vergleich von Werten, um die Sortierreihenfolge festzustellen
 			if (dir === "asc") {
 				if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
 					shouldSwitch = true;
@@ -87,6 +94,8 @@ function sortTable(columnIndex) {
 				}
 			}
 		}
+
+		// Austausch der Reihenfolge der Zeilen, wenn nötig
 		if (shouldSwitch) {
 			rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
 			switching = true;
@@ -100,6 +109,7 @@ function sortTable(columnIndex) {
 		}
 	}
 
+	// Aktualisiert den Sortierpfeil basierend auf der Sortierrichtung
 	function updateSortArrow(column, isAscending) {
 		var arrows = table.getElementsByClassName("sort-arrow");
 		for (var j = 0; j < arrows.length; j++) {
@@ -113,6 +123,7 @@ function sortTable(columnIndex) {
 	}
 }
 
+// Filtert die Tabelle basierend auf den ausgewählten Filteroptionen
 function filterTable() {
 	const countryFilter = document.getElementById("country-filter").value;
 	const companyFilter = document.getElementById("company-filter").value;
@@ -121,13 +132,16 @@ function filterTable() {
 	let validCountries = new Set();
 	let validCompanies = new Set();
 
+	// Überprüft jede Zeile, ob sie den ausgewählten Filtern entspricht
 	for (let i = 1; i < rows.length; i++) {
 		const countryCell = rows[i].getElementsByTagName("td")[0].innerText.trim();
 		const companyCell = rows[i].getElementsByTagName("td")[1].innerText.trim();
 		const shouldDisplay = (countryFilter === "" || countryCell === countryFilter) && (companyFilter === "" || companyCell === companyFilter);
 
+		// Zeigt oder versteckt die Zeilen basierend auf den Filterbedingungen
 		rows[i].style.display = shouldDisplay ? "" : "none";
 
+		// Füllt die Sets der gültigen Optionen basierend auf den gefilterten Ergebnissen
 		if (countryFilter === "" || shouldDisplay) {
 			validCompanies.add(companyCell);
 		}
@@ -138,36 +152,38 @@ function filterTable() {
 	updateFilterOptions();
 }
 
-function updateFilterOptions(filterElement, validOptions, currentSelection) {
-	let preserveCurrentSelection = false;
+// Aktualisiert die Dropdown-Optionen basierend auf den gültigen Auswahlmöglichkeiten
+function updateFilterOptions() {
+	const currentCountry = document.getElementById("country-filter").value;
+	const currentCompany = document.getElementById("company-filter").value;
+	const { validCountries, validCompanies } = collectValidOptions(globalData, currentCountry, currentCompany);
 
-	Array.from(filterElement.options).forEach((option) => {
-		if (validOptions.has(option.value)) {
-			option.style.display = "";
-			if (option.value === currentSelection) {
-				preserveCurrentSelection = true;
-			}
-		} else {
-			option.style.display = "none";
-		}
-	});
-
-	if (!preserveCurrentSelection && currentSelection !== "") {
-		filterElement.value = "";
-		filterTable();
-	}
+	updateDropdown("country-filter", validCountries);
+	updateDropdown("company-filter", validCompanies);
 }
 
+// Aktualisiert die Dropdown-Elemente mit den neuen gültigen Optionen
+function updateDropdown(dropdownId, validOptions) {
+	const dropdown = document.getElementById(dropdownId);
+	Array.from(dropdown.options).forEach((option) => {
+		option.style.display = validOptions.has(option.value) ? "" : "none";
+	});
+}
+
+// Setzt alle Filter und zeigt alle Zeilen in der Tabelle wieder an
 function resetFilters() {
 	const countryFilter = document.getElementById("country-filter");
 	const companyFilter = document.getElementById("company-filter");
 
+	// Zeigt alle Optionen in den Dropdowns an
 	Array.from(countryFilter.options).forEach((option) => (option.style.display = ""));
 	Array.from(companyFilter.options).forEach((option) => (option.style.display = ""));
 
+	// Setzt die Dropdown-Auswahl auf leer
 	countryFilter.value = "";
 	companyFilter.value = "";
 
+	// Zeigt alle Zeilen in der Tabelle an
 	const rows = document.getElementById("data-table").getElementsByTagName("tr");
 	for (let i = 1; i < rows.length; i++) {
 		rows[i].style.display = "";
@@ -176,21 +192,12 @@ function resetFilters() {
 	filterTable();
 }
 
-let globalData = [];
-
-document.addEventListener("DOMContentLoaded", function () {
-	fetch("data/data.json")
-		.then((response) => response.json())
-		.then((data) => {
-			globalData = data;
-		})
-		.catch((error) => console.error("Fehler beim Laden der Daten:", error));
-});
-
+// Sammelt gültige Länder- und Unternehmensoptionen basierend auf aktuellen Filtern
 function collectValidOptions(data, currentCountry, currentCompany) {
 	let validCountries = new Set();
 	let validCompanies = new Set();
 
+	// Durchläuft alle Daten und fügt gültige Länder und Unternehmen zu den Sets hinzu
 	data.forEach((item) => {
 		if (currentCompany === "" || item.company === currentCompany) {
 			validCountries.add(item.country);
@@ -201,20 +208,4 @@ function collectValidOptions(data, currentCountry, currentCompany) {
 	});
 
 	return { validCountries, validCompanies };
-}
-
-function updateFilterOptions() {
-	const currentCountry = document.getElementById("country-filter").value;
-	const currentCompany = document.getElementById("company-filter").value;
-	const { validCountries, validCompanies } = collectValidOptions(globalData, currentCountry, currentCompany);
-
-	updateDropdown("country-filter", validCountries);
-	updateDropdown("company-filter", validCompanies);
-}
-
-function updateDropdown(dropdownId, validOptions) {
-	const dropdown = document.getElementById(dropdownId);
-	Array.from(dropdown.options).forEach((option) => {
-		option.style.display = validOptions.has(option.value) ? "" : "none";
-	});
 }
