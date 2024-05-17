@@ -21,19 +21,17 @@ document.addEventListener("DOMContentLoaded", function () {
 		.then((response) => response.json())
 		.then((data) => {
 			globalData = data;
-			const tableBody = document.getElementById("data-table").getElementsByTagName("tbody")[0];
+			const tableBody = document.getElementsByTagName("tbody")[0];
 
 			// Füllen der Tabelle mit Daten
 			data.forEach((item) => {
-				let row = tableBody.insertRow();
-				let cell1 = row.insertCell(0);
-				let cell2 = row.insertCell(1);
-				let cell3 = row.insertCell(2);
-				let cell4 = row.insertCell(3);
-				cell1.textContent = item.country;
-				cell2.textContent = item.company;
-				cell3.textContent = item.co2_emitted;
-				cell4.textContent = item.year;
+				const row = tableBody.insertRow();
+				const fields = ["country", "company", "co2_emitted", "year"];
+
+				fields.forEach((field, index) => {
+					const cell = row.insertCell(index);
+					cell.textContent = item[field];
+				});
 
 				// Hinzufügen von einzigartigen Filteroptionen
 				if (!countryFilter.querySelector(`option[value="${item.country}"]`)) {
