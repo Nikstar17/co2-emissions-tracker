@@ -14,10 +14,20 @@ html {
 
 #nav {
 	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.nav-tabs {
+	padding: 0px;
+}
+
+.list-group {
+	padding: 5px;
 }
 
 #menu {
 	margin-right: 10px;
+	margin-left: 10px;
 }
 
 .bar1,
@@ -27,6 +37,10 @@ html {
 	height: 5px;
 	background-color: #333;
 	margin: 6px 0;
+}
+
+.row {
+	margin: 0px;
 }
 
 #emission-html,
